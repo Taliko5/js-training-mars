@@ -1,27 +1,18 @@
 // Rover Object Goes Here
 // ======================
+// Rover prototype
+function rover(name,x,y,theDirection,travelLog){
+    this.name = name;
+    this.x = x;
+    this.y = y;
+    this.theDirection = theDirection;
+    this.travelLog = travelLog;
+}
 // first Rover 
-let rover001 = {
-    name: "rover-01",
-    x: 0,
-    y: 0,
-    theDirection: "N",
-    travelLog: [{
-        x: 0,
-        y: 0
-    }]
-};
+let rover001 = new rover("rover-01", 0, 0, "N", [{ x: 0, y: 0 }]) ;
 // second Rover 
-let rover002 = {
-    name: "rover-02",
-    x: 9,
-    y: 9,
-    theDirection: "N",
-    travelLog: [{
-        x: 9,
-        y: 9
-    }]
-};
+let rover002 = new rover("rover-02", 9, 9, "N", [{x: 9,y: 9}]);
+    
 
 //obstacles list
 let obstacles = [
