@@ -5,14 +5,25 @@ class Rover{
        this.name = name;
        this.x: x;
        this.y: y;
-       this.positions =　{
-            travelLog: [{ x: this.x,y: this.y}];
-           let  = directions(){}
+       this.travelLog: [{ x: this.x, y: this.y}];
+       let directions : ["N","E","S","W"];
+       this.direction(moving) {
+        for (let i =0; i < moving.length; i++){
+            directions.keys +=1;
+            console.log(`is now facing ${directions[i]}`)
+            if(i > 4){
+                directions.key = 0;
+            }
+        }
+       }
+}
+    
         }
     }}
 //rover //
 let rover001 = new Rover("rover-01", 0, 0);
 let rover002 = new Rover("rover-02", 9, 9);
+
 
 //obstacles list
 let obstacles = [
