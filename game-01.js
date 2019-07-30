@@ -6,20 +6,34 @@ class Rover{
        this.x: x;
        this.y: y;
        this.travelLog: [{ x: this.x, y: this.y}];
-       let directions : ["N","E","S","W"];
-       this.direction(moving) {
-        for (let i =0; i < moving.length; i++){
-            directions.keys +=1;
-            console.log(`is now facing ${directions[i]}`)
+    }
+        const directions: ['N', 'E', 'S', 'W'];
+        // function for direction
+          turnRight(turn) {
+            for (let i = 0; i < turn.length; i++){
+             i +=1;
+            console.log(`${this.name}is now facing ${this.directions[i]}`)
             if(i > 4){
-                directions.key = 0;
+                i = 0;
             }
         }
-       }
-}
+            }
+          turnLeft(turn) {
+               for (let i = 4; i < turn.length; i--) {
+                   i -= 1;
+                   console.log(`${this.name}is now facing ${this.directions[i]}`)
+                   if (i < 0 ) {
+                       i = 4;
+                   }
+               }
+           }
     
+
+
         }
-    }}
+
+        
+        
 //rover //
 let rover001 = new Rover("rover-01", 0, 0);
 let rover002 = new Rover("rover-02", 9, 9);
