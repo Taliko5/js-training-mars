@@ -10,6 +10,20 @@ class Rover {
         }];
         this.directions = ['N', 'E', 'S', 'W'];
         this.num = 0;
+        this.field = this.x >= 0 && this.x <= 9 && this.y >=0 && this.y <=9 ;
+        this.obstacles = [
+                [x: Math.floor(Math.random() * 10, y: Math.floor(Math.random() * 10],
+                [x: Math.floor(Math.random() * 10, y: Math.floor(Math.random() * 10],
+                [x: Math.floor(Math.random() * 10, y: Math.floor(Math.random() * 10],
+                [x: Math.floor(Math.random() * 10, y: Math.floor(Math.random() * 10],
+                [x: Math.floor(Math.random() * 10, y: Math.floor(Math.random() * 10],
+                [x: Math.floor(Math.random() * 10, y: Math.floor(Math.random() * 10],
+                [x: Math.floor(Math.random() * 10, y: Math.floor(Math.random() * 10],
+                [x: Math.floor(Math.random() * 10, y: Math.floor(Math.random() * 10],
+                [x: Math.floor(Math.random() * 10, y: Math.floor(Math.random() * 10],
+                [x: Math.floor(Math.random() * 10, y: Math.floor(Math.random() * 10],
+                
+            ]
     }
     // function for direction
     turnRight = () => {
