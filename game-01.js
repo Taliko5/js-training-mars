@@ -3,30 +3,27 @@
 class Rover{
     constructor(name,x,y){
        this.name = name;
-       this.x: x;
-       this.y: y;
-       this.travelLog: [{ x: this.x, y: this.y}];
+       this.x = x;
+       this.y = y;
+       this.travelLog = [{ x: this.x, y: this.y}];
+       this.directions = ['N', 'E', 'S', 'W'];
+       this.num = 0;
     }
-        const directions: ['N', 'E', 'S', 'W'];
-        // function for direction
-          turnRight(turn) {
-            for (let i = 0; i < turn.length; i++){
-             i +=1;
-            console.log(`${this.name}is now facing ${this.directions[i]}`)
-            if(i > 4){
-                i = 0;
+          // function for direction
+          turnRight() {
+            this.num++ ;
+            console.log(`${this.name}is now facing ${this.directions[this.num]}`)
+            if (this.num > 4) {
+                this.num = 0;
             }
         }
-            }
-          turnLeft(turn) {
-               for (let i = 4; i < turn.length; i--) {
-                   i -= 1;
-                   console.log(`${this.name}is now facing ${this.directions[i]}`)
-                   if (i < 0 ) {
-                       i = 4;
-                   }
-               }
+          turnLeft() {
+              this.num--;
+              if (this.num < 0) {
+                   this.num = 4;
            }
+           console.log(`${this.name}is now facing ${this.directions[this.num]}`)
+        }
     
 
 
@@ -37,6 +34,10 @@ class Rover{
 //rover //
 let rover001 = new Rover("rover-01", 0, 0);
 let rover002 = new Rover("rover-02", 9, 9);
+
+rover001.turnLeft();
+rover001.turnLeft();
+rover001.turnLeft();
 
 
 //obstacles list
