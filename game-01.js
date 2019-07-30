@@ -1,43 +1,110 @@
-
- // Rover Object Goes Here
-class Rover{
-    constructor(name,x,y){
-       this.name = name;
-       this.x = x;
-       this.y = y;
-       this.travelLog = [{ x: this.x, y: this.y}];
-       this.directions = ['N', 'E', 'S', 'W'];
-       this.num = 0;
+// Rover Class 
+class Rover {
+    constructor(name, x, y) {
+        this.name = name;
+        this.x = x;
+        this.y = y;
+        this.travelLog = [{
+            x: this.x,
+            y: this.y
+        }];
+        this.directions = ['N', 'E', 'S', 'W'];
+        this.num = 0;
     }
-          // function for direction
-          turnRight() {
-            this.num++ ;
-            console.log(`${this.name}is now facing ${this.directions[this.num]}`)
-            if (this.num > 4) {
-                this.num = 0;
-            }
+    // function for direction
+    turnRight = () => {
+        this.num++;
+        if (this.num + 1 > 4) {
+            this.num = 0;
         }
-          turnLeft() {
-              this.num--;
-              if (this.num < 0) {
-                   this.num = 4;
-           }
-           console.log(`${this.name}is now facing ${this.directions[this.num]}`)
+        console.log(`${this.name} is now facing ${this.directions[this.num]}`);
+    };
+    turnLeft = () => {
+        this.num--;
+        if (this.num - 1 < -1) {
+            this.num = this.directions.length - 1;
         }
-    
+        console.log(`${this.name} is now facing ${this.directions[this.num]}`);
+    };
+
+    /* //it was impossible but it could make something....!!!
+    moveForward(){
+       this.x = this.directions[this.num][1];
+       this.y = this.directions[this.num][2];
+       console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
+       let newPosition = {
+           x: this.x,
+           y: this.y
+       };
+       this.travelLog.push(newPosition);
+    } 
+    */
+    moveForward() {
+        if (this.directions[this.num] === "N") {
+            this.y--;
+            console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
+        } else if (this.directions[this.num] === "E") {
+            this.x++;
+            console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
+        } else if (this.directions[this.num] === "S") {
+            this.y++;
+            console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
+        } else {
+            this.x--;
+            console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
+        }
+        let newPosition = {
+            x: this.x,
+            y: this.y
+        };
+        this.travelLog.push(newPosition);
+    }
+    moveBackward() {
+        if (this.directions[this.num] === "N") {
+            this.y++;
+            console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
+        } else if (this.directions[this.num] === "E") {
+            this.x--;
+            console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
+        } else if (this.directions[this.num] === "S") {
+            this.y--;
+            console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
+        } else {
+            this.x++;
+            console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
+        }
+        let newPosition = {
+            x: this.x,
+            y: this.y
+        };
+        this.travelLog.push(newPosition);
+    }
+
+}
 
 
-        }
-
-        
-        
 //rover //
 let rover001 = new Rover("rover-01", 0, 0);
 let rover002 = new Rover("rover-02", 9, 9);
+rover001.moveForward();
+rover001.moveForward();
+rover001.moveForward();
 
-rover001.turnLeft();
-rover001.turnLeft();
-rover001.turnLeft();
+rover001.travelLog;
+
+function moveForward(rover) {
+    console.log("moveForward was calleD");
+}
+
+function moveBackward(rover) {
+    console.log("moveBackward was calleD");
+
+}
+moveForward(rover001);
+moveForward(rover002);
+moveBackward(rover001);
+moveBackward(rover002);
+
 
 
 //obstacles list
@@ -74,21 +141,21 @@ let positions = [
 function turnLeft(rover) {
     // North -> west
     let placeToBe = ``;
-    if (rover.direction === "N") {
-        rover.direction = "W";
+    if (rover.theDirection === "N") {
+        rover.theDirection = "W";
         console.log(`${rover.name} is now facing West`);
         rover.travelLog.push(placeToBe);
         // west -> south
-    } else if (rover.direction === "W") {
-        rover.direction = "S";
+    } else if (rover.theDirection === "W") {
+        rover.theDirection = "S";
         console.log(`${rover.name} is now facing South`);
         // South -> east
-    } else if (rover.direction === "S") {
-        rover.direction = "E";
+    } else if (rover.theDirection === "S") {
+        rover.theDirection = "E";
         console.log(`${rover.name} is now facing East`);
         // east -> north
     } else {
-        rover.direction = "N";
+        rover.theDirection = "N";
         console.log(`${rover.name} is now facing North`);
 
     }
@@ -97,30 +164,30 @@ function turnLeft(rover) {
 
 function turnRight(rover) {
     // North -> East
-    if (rover.direction === "N") {
-        rover.direction = "E";
+    if (rover.theDirection === "N") {
+        rover.theDirection = "E";
         console.log(`${rover.name}is now facing East`);
         // East -> South
-    } else if (rover.direction === "E") {
-        rover.direction = "S";
+    } else if (rover.theDirection === "E") {
+        rover.theDirection = "S";
         console.log(`${rover.name} is now facing South`);
         // South -> West
-    } else if (rover.direction === "S") {
-        rover.direction = "W";
+    } else if (rover.theDirection === "S") {
+        rover.theDirection = "W";
         console.log(`${rover.name} is now facing West`);
         // West -> north
     } else {
-        rover.direction = "N";
+        rover.theDirection = "N";
         console.log(`${rover.name} is now facing North`);
     }
 
 }
 
 
-// moving to forwarD  (0<x<9, 0<y<9
-function moveForwarD(rover) {
-
-    if (rover.direction === "N" && rover.y - 1 >= 0) {
+// moving to forward
+// (0<x<9, 0<y<9)
+function moveForward(rover) {
+    if (rover.theDirection === "N" && rover.y - 1 >= 0) {
         // if the rover moves to the obstacles
         if (obstacles[rover.y - 1][rover.x] === "O") {
             console.log(`ouch..your rover hit an obstable`);
@@ -138,7 +205,7 @@ function moveForwarD(rover) {
             rover.travelLog.push(newPosition);
         }
         //position is South -> +1 : y
-    } else if (rover.direction === "S" && rover.y + 1 <= 9) {
+    } else if (rover.theDirection === "S" && rover.y + 1 <= 9) {
         // if the rover moves to the obstacles
         if (obstacles[rover.y + 1][rover.x] === "O") {
             console.log(`ouch..your rover hit an obstable`);
@@ -157,7 +224,7 @@ function moveForwarD(rover) {
 
         }
         //position is South -> -1 : X
-    } else if (rover.direction === "W" && rover.x - 1 >= 0) {
+    } else if (rover.theDirection === "W" && rover.x - 1 >= 0) {
         // if the rover moves to the obstacles
         if (obstacles[rover.y][rover.x - 1] === "O") {
             console.log(`ouch..your rover hit an obstable`);
@@ -175,7 +242,7 @@ function moveForwarD(rover) {
             rover.travelLog.push(newPosition);
         }
         //position is South -> +1 : X
-    } else if (rover.direction === "E" && rover.x + 1 <= 9) {
+    } else if (rover.theDirection === "E" && rover.x + 1 <= 9) {
         // if the rover moves to the obstacles
         if (obstacles[rover.y][rover.x + 1] === "O") {
             console.log(`ouch..your rover hit an obstable`);
@@ -202,9 +269,9 @@ function moveForwarD(rover) {
 
 
 // moving to bachworD  (0<x<9, 0<y<9
-function moveBackwarD(rover) {
+function moveBackward(rover) {
     //position is South -> -1 : y
-    if (rover.direction === "S" && rover.y - 1 >= 0) {
+    if (rover.theDirection === "S" && rover.y - 1 >= 0) {
         // if the rover moves to the obstacles
         if (obstacles[rover.y - 1][rover.x] === "O") {
             console.log(`ouch..your rover hit an obstable`);
@@ -222,7 +289,7 @@ function moveBackwarD(rover) {
             rover.travelLog.push(newPosition);
         }
         //position is North -> +1 : y
-    } else if (rover.direction === "N" && rover.y + 1 <= 9) {
+    } else if (rover.theDirection === "N" && rover.y + 1 <= 9) {
         // if the rover moves to the obstacles
         if (obstacles[rover.y + 1][rover.x] === "O") {
             console.log(`ouch..your rover hit an obstable`);
@@ -240,7 +307,7 @@ function moveBackwarD(rover) {
             rover.travelLog.push(newPosition);
         }
         //position is East -> -1 : X
-    } else if (rover.direction === "E" && rover.x - 1 >= 0) {
+    } else if (rover.theDirection === "E" && rover.x - 1 >= 0) {
         // if the rover moves to the obstacles
         if (obstacles[rover.y][rover.x - 1] === "O") {
             console.log(`ouch..your rover hit an obstable`);
@@ -258,7 +325,7 @@ function moveBackwarD(rover) {
             rover.travelLog.push(newPosition);
         }
         //position is West-> +1 : X
-    } else if (rover.direction === "W" && rover.x + 1 <= 0) {
+    } else if (rover.theDirection === "W" && rover.x + 1 <= 0) {
         // if the rover moves to the obstacles
         if (obstacles[rover.y][rover.x + 1] === "O") {
             console.log(`ouch..your rover hit an obstable`);
@@ -298,10 +365,13 @@ function commanD(rover, orders, rover02) {
                 turnRight(rover);
                 break;
             case "f": //forward
-                moveForwarD(rover);
+
+                moveForward
+                    (rover);
                 break;
             case "b": //backword
-                moveBackwarD(rover);
+                moveBackward
+                    (rover);
         }
     }
     console.log(rover.travelLog);
@@ -314,7 +384,8 @@ commanD(rover001, "llf", rover002);
 commanD(rover002, "f", rover001);
 
 
-// ======================
+// =====================
+
 function turnLeft(rover) {
     console.log("turnLeft was calleD!");
 }
@@ -323,13 +394,13 @@ function turnRight(rover) {
     console.log("turnRight was calleD!");
 }
 
-function moveForwarD(rover) {
-    console.log("moveForwarD was calleD");
+function moveForward(rover) {
+    console.log("moveForward was calleD");
 
 }
 
-function moveBackwarD(rover) {
-    console.log("moveBackwarD was calleD");
+function moveBackward(rover) {
+    console.log("moveBackward was calleD");
 
 }
 
@@ -337,10 +408,12 @@ function moveBackwarD(rover) {
 
 
 
-/* moving to forwarD  (0<x<9, 0<y<9
-function moveForwarD(rover) {
+/* moving to forward
+  (0<x<9, 0<y<9
+function moveForward
+(rover) {
     
-    if (rover.direction === "N" && rover.y - 1 >= 0) {
+    if (rover.theDirection === "N" && rover.y - 1 >= 0) {
         if(obstacles[rover.y-1][rover.x] === "O"){
          console.log(`ouch..your rover hit an obstable`);
         
@@ -356,7 +429,7 @@ function moveForwarD(rover) {
         rover.travelLog.push(newPosition);
         }
         //position is South -> +1 : y
-    } else if (rover.direction === "S" && rover.y + 1 <= 9) {
+    } else if (rover.theDirection === "S" && rover.y + 1 <= 9) {
         if (obstacles[rover.y + 1][rover.x] === "O") {
             console.log(`ouch..your rover hit an obstable`);
 
@@ -373,7 +446,7 @@ function moveForwarD(rover) {
 
         }
         //position is South -> -1 : X
-    } else if (rover.direction === "W" && rover.x - 1 >= 0) {
+    } else if (rover.theDirection === "W" && rover.x - 1 >= 0) {
         if (obstacles[rover.y][rover.x - 1] === "O") {
             console.log(`ouch..your rover hit an obstable`);
 
@@ -389,7 +462,7 @@ function moveForwarD(rover) {
         rover.travelLog.push(newPosition);
          }
         //position is South -> +1 : X
-    } else if (rover.direction === "E" && rover.x + 1 <= 9) {
+    } else if (rover.theDirection === "E" && rover.x + 1 <= 9) {
         if (obstacles[rover.y][rover.x + 1] === "O") {
             console.log(`ouch..your rover hit an obstable`);
 
@@ -422,10 +495,13 @@ function commanD(rover, orders, rover02) {
                 turnRight(rover);
                 break;
             case "f": //forward
-                moveForwarD(rover);
+            
+                moveForward
+                (rover);
                 break;
             case "b": //backword
-                moveBackwarD(rover);
+                moveBackward
+            (rover);
         }
     }
     console.log(rover.travelLog);
