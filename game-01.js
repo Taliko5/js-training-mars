@@ -10,8 +10,10 @@ class Rover {
         }];
         this.directions = ['N', 'E', 'S', 'W'];
         this.num = 0;
-        this.field = this.x >= 0 && this.x <= 9 && this.y >=0 && this.y <=9 ;
-        this.obstacles = [
+         //this.x >= 0 || this.x <= 9 || this.y >= 0 &|| this.y <= 9;
+        this.fieldX = this.x >= 0 && this.x <= 9;
+        this.fieldY = this.y >= 0 && this.y <= 9;
+        /*this.obstacles = [
                 [x: Math.floor(Math.random() * 10, y: Math.floor(Math.random() * 10],
                 [x: Math.floor(Math.random() * 10, y: Math.floor(Math.random() * 10],
                 [x: Math.floor(Math.random() * 10, y: Math.floor(Math.random() * 10],
@@ -22,8 +24,8 @@ class Rover {
                 [x: Math.floor(Math.random() * 10, y: Math.floor(Math.random() * 10],
                 [x: Math.floor(Math.random() * 10, y: Math.floor(Math.random() * 10],
                 [x: Math.floor(Math.random() * 10, y: Math.floor(Math.random() * 10],
-                
-            ]
+
+            ]*/
     }
     // function for direction
     turnRight = () => {
@@ -54,19 +56,26 @@ class Rover {
     } 
     */
     moveForward() {
-        if (this.directions[this.num] === "N") {
+        //0 = north
+         if (this.num === 0 && this.y - 1 === this.fieldY) {
             this.y--;
             console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
-        } else if (this.directions[this.num] === "E") {
+            
+         //1 = east  
+        } else if (this.num === 1  && this.x + 1 === this.fieldX ) {
             this.x++;
             console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
-        } else if (this.directions[this.num] === "S") {
+         //2 = south
+        } else if (this.num === 2  && this.y + 1 === this.fieldY ) {
             this.y++;
             console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
-        } else {
+         // 3 = west
+        } else if(this.num === 3  && this.x - 1 === this.fieldX ){
             this.x--;
             console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
-        }
+        }else{
+        console.log(`ouch..${this.name} hits the wall`);
+    }
         let newPosition = {
             x: this.x,
             y: this.y
@@ -74,13 +83,15 @@ class Rover {
         this.travelLog.push(newPosition);
     }
     moveBackward() {
-        if (this.directions[this.num] === "N") {
+         //0 = north
+        if (this.this.num === 0) {
             this.y++;
             console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
-        } else if (this.directions[this.num] === "E") {
+        } else if (this.num === 1) {
             this.x--;
             console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
-        } else if (this.directions[this.num] === "S") {
+        //2 = south
+        } else if (this.num === 2) {
             this.y--;
             console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
         } else {
@@ -98,8 +109,9 @@ class Rover {
 
 
 //rover //
-let rover001 = new Rover("rover-01", 0, 0);
+let rover001 = new Rover("rover-01", 2, 2);
 let rover002 = new Rover("rover-02", 9, 9);
+//rover001.turnLeft();
 rover001.moveForward();
 rover001.moveForward();
 rover001.moveForward();
