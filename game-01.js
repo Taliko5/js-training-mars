@@ -1,3 +1,12 @@
+// const board = [[],[],[]]
+//const board = Array.from({length: 10}, Array.from({length:10}, ()=>''))
+// functionn obstacles() {
+//  return board.map((e,i,a)=>{
+//  let randIndex =  Math.floor(Math.random() * 10)    
+//     return board[i][randIndex]=='O'}) 
+//}
+//
+
 // Rover Class 
 class Rover {
     constructor(name, x, y) {
@@ -8,11 +17,12 @@ class Rover {
             x: this.x,
             y: this.y
         }];
-        this.directions = ['N', 'E', 'S', 'W'];
+        this.directions = ['N', 'E', 'S', 'W']; //'N'
+        //  for move for-backford...it didn't work
+        //this.directions = [['N', this.x, this.y-1 ],['E',, this.x 1+, this.y], '[S', this.x, this.y+1 ], ['W', this.x-1, this.y]];
         this.num = 0;
-         //this.x >= 0 || this.x <= 9 || this.y >= 0 &|| this.y <= 9;
-        this.fieldX = this.x >= 0 && this.x <= 9;
-        this.fieldY = this.y >= 0 && this.y <= 9;
+        this.field = (this.x >= 0 && this.x <= 9 && this.y >= 0 && this.y <= 9);
+        // i will try to make tandom obstacle later...
         /*this.obstacles = [
                 [x: Math.floor(Math.random() * 10, y: Math.floor(Math.random() * 10],
                 [x: Math.floor(Math.random() * 10, y: Math.floor(Math.random() * 10],
@@ -28,20 +38,27 @@ class Rover {
             ]*/
     }
     // function for direction
-    turnRight = () => {
+    get turnRight =()=> this.turnR();
+    get turnLeft =()=> this.turnL();
+    get moveForward =()=> this.moveF();
+    get moveBackward =()=> this.moveB();
+
+    turnR = () => {
         this.num++;
         if (this.num + 1 > 4) {
             this.num = 0;
         }
         console.log(`${this.name} is now facing ${this.directions[this.num]}`);
     };
-    turnLeft = () => {
+    turnL = () => {
         this.num--;
         if (this.num - 1 < -1) {
             this.num = this.directions.length - 1;
         }
         console.log(`${this.name} is now facing ${this.directions[this.num]}`);
     };
+
+    turnLeft()
 
     /* //it was impossible but it could make something....!!!
     moveForward(){
@@ -55,22 +72,22 @@ class Rover {
        this.travelLog.push(newPosition);
     } 
     */
-    moveForward() {
+    moveF() {
         //0 = north
-         if (this.num === 0 && this.y - 1 === this.fieldY) {
+         if (this.num === 0 && this.field) {
             this.y--;
             console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
             
          //1 = east  
-        } else if (this.num === 1  && this.x + 1 === this.fieldX ) {
+        } else if (this.num === 1  && this.x + 1 === this.field ) {
             this.x++;
             console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
          //2 = south
-        } else if (this.num === 2  && this.y + 1 === this.fieldY ) {
+        } else if (this.num === 2  && this.y + 1 === this.field ) {
             this.y++;
             console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
          // 3 = west
-        } else if(this.num === 3  && this.x - 1 === this.fieldX ){
+        } else if(this.num === 3  && this.x - 1 === this.field ){
             this.x--;
             console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
         }else{
@@ -82,9 +99,9 @@ class Rover {
         };
         this.travelLog.push(newPosition);
     }
-    moveBackward() {
+    moveB() {
          //0 = north
-        if (this.this.num === 0) {
+        if (this.num === 0) {
             this.y++;
             console.log(`${this.name} is now x: ${this.x} y: ${this.y}`);
         } else if (this.num === 1) {
@@ -105,8 +122,33 @@ class Rover {
         this.travelLog.push(newPosition);
     }
 
-}
+    turn(this.direction, right){
+        let idx = this.directions.indexOf(direction);
+        idx += (right) ? 1 : -1 ;
+       if(idx ===this.directions.length) {
+           idx = 0;
+       } else idx(idx < 0){
+           idx = this.direction.length -1 ;
+       }
+        return this.directions[this.idx];
 
+           },
+       toString(){
+           return this.directions[this.idx];
+       }
+
+       turnStupid(where){
+        if(this.num===0){
+            where==='right'?this.num=1:this.num=3
+        } elseif(this.num===1){
+            where==='right'?
+        } elseif(){}
+        else{}
+       }
+    
+
+
+}
 
 //rover //
 let rover001 = new Rover("rover-01", 2, 2);
@@ -115,8 +157,8 @@ let rover002 = new Rover("rover-02", 9, 9);
 rover001.moveForward();
 rover001.moveForward();
 rover001.moveForward();
-
 rover001.travelLog;
+
 
 function moveForward(rover) {
     console.log("moveForward was calleD");
